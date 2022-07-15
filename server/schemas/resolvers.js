@@ -28,8 +28,10 @@ const resolvers = {
                 .populate('thoughts');
         },
 
-        //Ask Ta: what is context?
-        me: async(parent,args, context) => {
+        //context: comes from the authentication (The JWT object you put in)
+        //parent: a result returned by the resolver from the outer query
+        //args: information about the query
+        me: async(parent, args, context) => {
         if(context.user) {
             const userData = await User.findOne({_id: context.user._id})
                 .select('-__v -password')
