@@ -13,10 +13,9 @@ const Profile = () => {
     variables: {username: userParam}
   });
 
-  //ask Ta: what is this?
-  //ask Ta: why does my profile assume i'm not logged in?
-  const user = data?.user || data?.user || {};
-
+  //checking if "me" has anything (null operator), if null, it will return an empty object
+  const user = data?.me || data?.user || {};
+  console.log(data);
   //navigate to personal profile page if username is the logged-in user's
   if(Auth.loggedIn() && Auth.getProfile().data.username === userParam){
     return <Navigate to="/profile" />;
